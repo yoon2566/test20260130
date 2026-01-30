@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jumping Game</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Neon Runner 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="game">
-        <div id="score">Score: 0</div>
+        <div id="background-grid"></div>
+        <div id="score">SCORE: 0</div>
+        <div id="level">SPEED: 1x</div>
         <div id="character"></div>
-        <div id="obstacle"></div>
+        <!-- Obstacles will be generated here -->
         <div id="game-over" class="hidden">
-            <h1>Game Over</h1>
-            <p>Your Score: <span id="final-score">0</span></p>
-            <button id="restart-btn">Restart</button>
+            <h1>SYSTEM FAILURE</h1>
+            <p>FINAL SCORE: <span id="final-score">0</span></p>
+            <button id="restart-btn">REBOOT SYSTEM</button>
         </div>
     </div>
     <script src="main.js"></script>

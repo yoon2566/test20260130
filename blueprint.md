@@ -7,19 +7,23 @@ This is a simple side-scrolling game where the player controls a character that 
 
 ## Features
 
-*   **Pixel Art Graphics:** The game features a retro pixel art style, with custom-drawn pixelated characters and obstacles.
-*   **Score:** The score increases as the player successfully avoids obstacles.
-*   **Collision Detection:** The game ends when the player collides with an obstacle.
-*   **Game-Over and Restart:** A game-over screen is displayed upon collision, with an option to restart the game.
-*   **Responsive Design:** The game is designed to be playable on both mobile and desktop screens.
+*   **Dynamic Gameplay:**
+    *   **Increasing Difficulty:** The game speed increases every 100 points.
+    *   **Randomized Obstacles:** Obstacles spawn at varying intervals to prevent pattern memorization.
+*   **Physics-based Jump:** Smoother jumping mechanics with gravity simulation.
+*   **Score System:** Score increases as obstacles are cleared.
+*   **Responsive Design:** Works on varying screen sizes.
 
 ## Design
 
-*   **Layout:** A clean, full-screen game area with a retro aesthetic.
-*   **Visual Style:** A complete retro pixel art theme, utilizing a specific color palette and a pixelated font.
-*   **Player & Obstacle:** The character and obstacles are designed with a blocky, pixel-art look using CSS box-shadows, creating a classic 8-bit game feel.
-*   **Typography:** Uses the "Press Start 2P" font to enhance the retro gaming atmosphere.
-*   **Interactivity:** The player jumps by pressing the spacebar. The game provides clear feedback on game-over and allows for a simple restart.
+*   **Theme:** **Cyberpunk / Synthwave**.
+*   **Visuals:**
+    *   **Background:** Deep purple gradient with a moving 3D perspective grid.
+    *   **Character:** Glowing Cyan Neon Cube.
+    *   **Obstacles:** Glowing Magenta Neon Spikes.
+    *   **Font:** 'Orbitron' (Sci-fi/Futuristic).
+    *   **Effects:** High-contrast neon glow and box-shadows.
+*   **UI:** Digital HUD style for Score and Speed indicators.
 
 ## Current Task: Implement Retro Pixel Art Style
 
