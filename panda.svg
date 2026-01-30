@@ -1,0 +1,46 @@
+<svg width="60" height="60" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Neon Glow Filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g filter="url(#glow)">
+    <!-- Tail (Striped) -->
+    <path d="M10,65 Q0,45 20,45 Q30,45 35,60" fill="#FF5722" stroke="#00FFFF" stroke-width="2"/>
+    <path d="M12,55 Q18,50 24,52" stroke="#3E2723" stroke-width="3" fill="none" opacity="0.6"/>
+    <path d="M15,62 Q20,58 26,60" stroke="#3E2723" stroke-width="3" fill="none" opacity="0.6"/>
+
+    <!-- Body -->
+    <ellipse cx="45" cy="70" rx="20" ry="15" fill="#FF5722" stroke="#00FFFF" stroke-width="2"/>
+
+    <!-- Legs (Running Pose) -->
+    <path d="M35,80 L25,90" stroke="#00FFFF" stroke-width="4" stroke-linecap="round"/>
+    <path d="M55,80 L65,90" stroke="#00FFFF" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Head -->
+    <circle cx="60" cy="50" r="22" fill="#FF5722" stroke="#00FFFF" stroke-width="2"/>
+
+    <!-- Ears -->
+    <path d="M45,35 L40,20 L55,30 Z" fill="#3E2723" stroke="#00FFFF" stroke-width="2"/>
+    <path d="M75,35 L80,20 L65,30 Z" fill="#3E2723" stroke="#00FFFF" stroke-width="2"/>
+
+    <!-- Face Markings -->
+    <path d="M45,55 Q60,65 75,55" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+    <circle cx="60" cy="62" r="12" fill="#FFFFFF" opacity="0.8"/> 
+
+    <!-- Eyes -->
+    <circle cx="53" cy="50" r="4" fill="#000000"/>
+    <circle cx="67" cy="50" r="4" fill="#000000"/>
+    <circle cx="55" cy="48" r="1.5" fill="#FFFFFF"/>
+    <circle cx="69" cy="48" r="1.5" fill="#FFFFFF"/>
+
+    <!-- Nose -->
+    <ellipse cx="60" cy="58" rx="3" ry="2" fill="#3E2723"/>
+  </g>
+</svg>

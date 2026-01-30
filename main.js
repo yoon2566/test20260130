@@ -62,6 +62,14 @@ function updatePhysics() {
     if (isJumping || charY > GROUND_Y) {
         charY += jumpVelocity;
         jumpVelocity -= gravity;
+        // Pause running animation while jumping
+        character.style.animationName = 'none';
+        // Add a slight tilt for jump
+        character.style.transform = 'rotate(-15deg)'; 
+    } else {
+        // Resume running animation on ground
+        character.style.animationName = 'run-bounce';
+        character.style.transform = ''; // Clear manual transform
     }
 
     if (charY <= GROUND_Y) {
@@ -86,14 +94,14 @@ function updateObstacles() {
         obs.element.style.left = obs.x + 'px';
 
         // Collision Detection
-        // Character Hitbox: Left 50, Width 40 -> Right 90. Bottom 100 + charY.
+        // Character Hitbox: Left 50, Width 60 -> Right 110. Bottom 100 + charY.
         // Obstacle Hitbox: Left obs.x, Width 30. Bottom 100. Height 60.
         
         // Simple AABB collision
-        const charLeft = 50;
-        const charRight = 50 + 40;
+        const charLeft = 50 + 10; // Add padding for tighter hitbox
+        const charRight = 50 + 60 - 10; // Subtract padding
         const charBottom = charY; // Relative to ground (0)
-        const charTop = charY + 40;
+        const charTop = charY + 60;
 
         const obsLeft = obs.x;
         const obsRight = obs.x + 30;

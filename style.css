@@ -51,20 +51,34 @@ body {
 #score { left: 20px; color: #0ff; }
 #level { right: 20px; color: #f0f; }
 
-/* Character: Neon Cube */
+/* Character: Red Panda (SVG) */
 #character {
-    width: 40px;
-    height: 40px;
-    background: #0ff;
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    background-image: url('panda.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     position: absolute;
-    bottom: 100px; /* Aligned with "floor" illusion */
+    bottom: 100px;
     left: 50px;
-    box-shadow: 
-        0 0 10px #0ff,
-        0 0 20px #0ff,
-        0 0 40px #0ff;
     z-index: 5;
-    transition: transform 0.1s;
+    /* Clean look for SVG */
+    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.6));
+    
+    /* Running Animation */
+    animation: run-bounce 0.3s infinite alternate ease-in-out;
+    transform-origin: bottom center; /* Pivot from feet */
+}
+
+@keyframes run-bounce {
+    0% {
+        transform: translateY(0) rotate(-5deg) scaleY(0.95);
+    }
+    100% {
+        transform: translateY(-10px) rotate(5deg) scaleY(1.05);
+    }
 }
 
 .jump {
