@@ -86,18 +86,42 @@ body {
     /* We will implement physics-based jump in JS for better control */
 }
 
-/* Obstacle: Neon Spikes */
+/* Obstacles */
 .obstacle {
+    position: absolute;
+    bottom: 100px;
+    z-index: 5;
+}
+
+.obstacle-spike {
     width: 30px;
     height: 60px;
     background: #f0f;
-    position: absolute;
-    bottom: 100px;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Triangle shape */
-    box-shadow: 
-        0 0 10px #f0f,
-        0 0 20px #f0f;
-    z-index: 5;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    box-shadow: 0 0 10px #f0f, 0 0 20px #f0f;
+}
+
+.obstacle-wall {
+    width: 40px;
+    height: 70px;
+    background: #2196F3; /* Blue */
+    box-shadow: 0 0 10px #2196F3, 0 0 20px #2196F3;
+    border: 2px solid #fff;
+}
+
+.obstacle-saw {
+    width: 50px;
+    height: 50px;
+    background: #FF0000; /* Red */
+    border-radius: 50%;
+    border: 4px dashed #fff; /* Saw teeth look */
+    box-shadow: 0 0 10px #FF0000, 0 0 20px #FF0000;
+    animation: spin 0.2s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 /* Game Over Screen */

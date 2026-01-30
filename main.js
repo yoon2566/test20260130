@@ -43,17 +43,38 @@ function jump() {
 function spawnObstacle() {
     const obstacle = document.createElement('div');
     obstacle.classList.add('obstacle');
-    obstacle.style.left = '100vw'; // Start off-screen right
+    
+    // Randomly choose obstacle type
+    const type = Math.random();
+    let width, height, typeClass;
+
+    if (type < 0.33) {
+        typeClass = 'obstacle-spike';
+        width = 30;
+        height = 60;
+    } else if (type < 0.66) {
+        typeClass = 'obstacle-wall';
+        width = 40;
+        height = 70;
+    } else {
+        typeClass = 'obstacle-saw';
+        width = 50;
+        height = 50;
+    }
+    
+    obstacle.classList.add(typeClass);
+    obstacle.style.left = '100vw';
     gameArea.appendChild(obstacle);
     
     obstacles.push({
         element: obstacle,
-        x: window.innerWidth
+        x: window.innerWidth,
+        width: width,
+        height: height
     });
 
     // Randomize next spawn time based on speed
-    // Higher speed = obstacles come faster, but we need gap control
-    const minGap = 60 + (Math.random() * 60); // Frames
+    const minGap = 60 + (Math.random() * 50); // Slightly reduced gap
     nextSpawnTime = frameCount + minGap; 
 }
 
@@ -78,7 +99,7 @@ function updatePhysics() {
         jumpVelocity = 0;
     }
 
-    character.style.bottom = (100 + charY) + 'px'; // 100px is the visual floor offset
+    character.style.bottom = (100 + charY) + 'px'; 
 }
 
 function updateObstacles() {
@@ -93,30 +114,26 @@ function updateObstacles() {
         obs.x -= gameSpeed;
         obs.element.style.left = obs.x + 'px';
 
-        // Collision Detection
-        // Character Hitbox: Left 50, Width 60 -> Right 110. Bottom 100 + charY.
-        // Obstacle Hitbox: Left obs.x, Width 30. Bottom 100. Height 60.
-        
-        // Simple AABB collision
-        const charLeft = 50 + 10; // Add padding for tighter hitbox
-        const charRight = 50 + 60 - 10; // Subtract padding
-        const charBottom = charY; // Relative to ground (0)
-        const charTop = charY + 60;
+        // Collision Detection (Dynamic sizes)
+        const charLeft = 50 + 15; // Tighten hitbox horizontally
+        const charRight = 50 + 60 - 15; 
+        const charBottom = charY; 
+        // Note: charTop isn't strictly needed if we assume obstacle is on ground
 
         const obsLeft = obs.x;
-        const obsRight = obs.x + 30;
-        const obsHeight = 60;
+        const obsRight = obs.x + obs.width;
+        const obsHeight = obs.height;
         
-        // Check horizontal overlap
+        // Horizontal overlap
         if (charRight > obsLeft && charLeft < obsRight) {
-            // Check vertical overlap (Character is low enough to hit)
-            if (charBottom < obsHeight) {
+            // Vertical overlap (Did player jump high enough?)
+            if (charBottom < obsHeight - 10) { // -10 leeway for grazing
                 gameOver();
             }
         }
 
         // Remove off-screen
-        if (obs.x < -50) {
+        if (obs.x < -100) {
             obs.element.remove();
             obstacles.splice(i, 1);
             score += 10;
@@ -128,12 +145,12 @@ function updateObstacles() {
 function updateScore() {
     scoreDisplay.textContent = `SCORE: ${score}`;
     
-    // Difficulty Progression
-    if (score > 0 && score % 100 === 0) {
+    // Difficulty Progression: Faster every 50 points
+    if (score > 0 && score % 50 === 0) {
         gameSpeed += 0.5;
         levelDisplay.textContent = `SPEED: ${(gameSpeed / 5).toFixed(1)}x`;
         // Limit max speed
-        if(gameSpeed > 15) gameSpeed = 15;
+        if(gameSpeed > 20) gameSpeed = 20;
     }
 }
 
